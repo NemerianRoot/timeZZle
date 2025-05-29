@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\timeZZle.Data.Contracts\timeZZle.Data.Contracts.csproj" />
+      <ProjectReference Include="..\timeZZle.Data\timeZZle.Data.csproj" />
+      <ProjectReference Include="..\timeZZle.Domain\timeZZle.Domain.csproj" />
+      <ProjectReference Include="..\timeZZle.Dtos\timeZZle.Dtos.csproj" />
+      <ProjectReference Include="..\timeZZle.Application\timeZZle.Application.csproj" />
+      <ProjectReference Include="..\timeZZle.Shared\timeZZle.Shared.csproj" />
+      <ProjectReference Include="..\timeZZle.Web.Api\timeZZle.Web.Api.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="9.0.0" />
+      <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.5" />
+      <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.2" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.2" />
+      <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.2" />
+    </ItemGroup>
+
+</Project>

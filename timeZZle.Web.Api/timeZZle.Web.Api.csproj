@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="Microsoft.AspNetCore">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\9.0.4\Microsoft.AspNetCore.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\9.0.4\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.AspNetCore.Routing">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\9.0.4\Microsoft.AspNetCore.Routing.dll</HintPath>
+      </Reference>
+      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+        <HintPath>C:\Program Files\dotnet\shared\Microsoft.AspNetCore.App\9.0.4\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="12.0.0" />
+      <PackageReference Include="Mapster" Version="7.4.0" />
+      <PackageReference Include="MediatR" Version="12.5.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.0" />
+      <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\timeZZle.Application\timeZZle.Application.csproj" />
+      <ProjectReference Include="..\timeZZle.Data.Contracts\timeZZle.Data.Contracts.csproj" />
+      <ProjectReference Include="..\timeZZle.Domain\timeZZle.Domain.csproj" />
+      <ProjectReference Include="..\timeZZle.Dtos\timeZZle.Dtos.csproj" />
+      <ProjectReference Include="..\timeZZle.Shared\timeZZle.Shared.csproj" />
+    </ItemGroup>
+
+</Project>
