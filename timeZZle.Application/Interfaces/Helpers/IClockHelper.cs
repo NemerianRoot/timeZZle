@@ -1,6 +1,10 @@
-﻿namespace timeZZle.Application.Interfaces.Helpers;
+﻿using timeZZle.Domain.Entities;
 
-public class IClockHelper
+namespace timeZZle.Application.Interfaces.Helpers;
+
+internal interface IClockHelper
 {
-    
+    List<int?[]> Solve(Clock clock);
+
+    bool IsSolvable(Clock clock);
 }

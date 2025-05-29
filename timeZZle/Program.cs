@@ -1,6 +1,10 @@
+using MediatR;
 using timeZZle.Application;
+using timeZZle.Behaviors;
 using timeZZle.Components;
 using timeZZle.Data;
+using timeZZle.Extensions;
+using timeZZle.Middlewares;
 using timeZZle.Web.Api.Endpoints.Clocks;
 using timeZZle.Web.Api.Extensions;
 
@@ -9,9 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestLoggingPipelineBehavior<,>));
+
 builder.Services
     .RegisterApp()
-    .RegisterData();
+    .RegisterData()
+    .RegisterMappings();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpoints(typeof(CreateClockEndpoint).Assembly);
@@ -47,7 +54,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseAntiforgery();
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()

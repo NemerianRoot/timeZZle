@@ -4,7 +4,7 @@ using timeZZle.Shared.Enums;
 using timeZZle.Shared.Interfaces.Messaging;
 using timeZZle.Shared.Utils;
 
-namespace timeZZle.Application.Handlers;
+namespace timeZZle.Application.Handlers.Clocks;
 
 public sealed record BoxInput(int Position, int Value);
 

@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using timeZZle.Application.Handlers;
-using timeZZle.Domain.Entities;
+using timeZZle.Application.Handlers.Clocks;
 using timeZZle.Dtos.Clocks;
 using timeZZle.Web.Api.Interfaces;
 using timeZZle.Web.Api.Utils;
@@ -20,19 +20,9 @@ public class GetRandomClockEndpoint : IEndpoint
 
             var result = await sender.Send(query, cancellationToken);
 
-            var dto = Map(result.Value);
+            var dto = result.Value.Adapt<ClockDto>();
 
             return result.Match(() => Results.Ok(dto), CustomResults.Problem);
         });
-    }
-
-    private static ClockDto Map(Clock clock)
-    {
-        return new ClockDto(clock.Id, clock.Size, clock.Boxes.Select(Map).ToArray(), clock.Difficulty);
-    }
-
-    private static BoxDto Map(Box box)
-    {
-        return new BoxDto(box.Id, box.Position, box.Value);
     }
 }

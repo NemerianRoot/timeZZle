@@ -16,6 +16,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timeZZle.Data", "timeZZle.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timeZZle.Data.Contracts", "timeZZle.Data.Contracts\timeZZle.Data.Contracts.csproj", "{A676195A-F5BE-4382-9283-DFC4AB1BD01F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EFB21B6B-F48B-4B5B-A8DA-D2731F2AFC4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timeZZle.Application.Tests", "timeZZle.Application.Tests\timeZZle.Application.Tests.csproj", "{113D3A09-C369-4E91-B452-7553883970B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +58,12 @@ Global
 		{A676195A-F5BE-4382-9283-DFC4AB1BD01F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A676195A-F5BE-4382-9283-DFC4AB1BD01F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A676195A-F5BE-4382-9283-DFC4AB1BD01F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{113D3A09-C369-4E91-B452-7553883970B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{113D3A09-C369-4E91-B452-7553883970B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{113D3A09-C369-4E91-B452-7553883970B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{113D3A09-C369-4E91-B452-7553883970B0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{113D3A09-C369-4E91-B452-7553883970B0} = {EFB21B6B-F48B-4B5B-A8DA-D2731F2AFC4F}
 	EndGlobalSection
 EndGlobal

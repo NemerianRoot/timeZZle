@@ -3,7 +3,7 @@ using timeZZle.Domain.Entities;
 using timeZZle.Shared.Interfaces.Messaging;
 using timeZZle.Shared.Utils;
 
-namespace timeZZle.Application.Handlers;
+namespace timeZZle.Application.Handlers.Clocks;
 
 public sealed record GetRandomClockQuery : IQuery<Clock>;
 

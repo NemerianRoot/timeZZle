@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using timeZZle.Application.Handlers;
-using timeZZle.Domain.Entities;
+using timeZZle.Application.Handlers.Clocks;
 using timeZZle.Dtos.Clocks;
 using timeZZle.Web.Api.Interfaces;
 using timeZZle.Web.Api.Utils;
@@ -20,21 +20,10 @@ public class GetAllClocksEndpoints : IEndpoint
 
                 var result = await sender.Send(query, cancellationToken);
 
-                var dtos = result.Value.Select(Map).ToArray();
+                var dtos = result.Value.Adapt<ClockDto>();
 
                 return result.Match(() => Results.Ok(dtos), CustomResults.Problem);
             })
             .WithTags(Tags.Clocks).WithOpenApi();
-    }
-    
-    private static ClockDto Map(Clock clock)
-
-    {
-        return new ClockDto(clock.Id, clock.Boxes.Count, clock.Boxes.Select(Map).ToArray(), clock.Difficulty);
-    }
-
-    private static BoxDto Map(Box box)
-    {
-        return new BoxDto(box.Id, box.Position, box.Value);
     }
 }
