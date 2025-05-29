@@ -20,10 +20,9 @@ public class GetAllClocksEndpoints : IEndpoint
 
                 var result = await sender.Send(query, cancellationToken);
 
-                var dtos = result.Value.Adapt<ClockDto>();
+                var dtos = result.Value.Adapt<ClockDto[]>();
 
                 return result.Match(() => Results.Ok(dtos), CustomResults.Problem);
-            })
-            .WithTags(Tags.Clocks).WithOpenApi();
+            }).WithTags(Tags.Clocks).WithOpenApi();
     }
 }

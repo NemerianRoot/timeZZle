@@ -5,10 +5,9 @@ using timeZZle.Shared.Utils;
 namespace timeZZle.Behaviors;
 
 internal sealed class RequestLoggingPipelineBehavior<TRequest, TResponse>(
-    ILogger<RequestLoggingPipelineBehavior<TRequest, TResponse>> logger)
-        : IPipelineBehavior<TRequest, TResponse>
-            where TRequest : class
-            where TResponse : Result
+    ILogger<RequestLoggingPipelineBehavior<TRequest, TResponse>> logger) : IPipelineBehavior<TRequest, TResponse>
+        where TRequest : class
+        where TResponse : Result
 {
     public async Task<TResponse> Handle(
         TRequest request,

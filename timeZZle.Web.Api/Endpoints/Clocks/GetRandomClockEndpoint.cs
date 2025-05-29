@@ -23,6 +23,6 @@ public class GetRandomClockEndpoint : IEndpoint
             var dto = result.Value.Adapt<ClockDto>();
 
             return result.Match(() => Results.Ok(dto), CustomResults.Problem);
-        });
+        }).WithTags(Tags.Clocks).WithOpenApi();
     }
 }
