@@ -14,7 +14,7 @@ public class CreateClockEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost(Tags.Clocks, async (ClockCreateDto createDto, ISender sender, CancellationToken cancellationToken) =>
+        app.MapPost($"api/{Tags.Clocks}", async (ClockCreateDto createDto, ISender sender, CancellationToken cancellationToken) =>
             {
                 var command = new CreateClockCommand(createDto.Difficulty, createDto.Boxes.Select(Map).ToArray());
 

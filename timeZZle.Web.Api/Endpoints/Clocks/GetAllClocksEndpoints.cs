@@ -14,7 +14,7 @@ public class GetAllClocksEndpoints : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet(Tags.Clocks, async (ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet($"api/{Tags.Clocks}", async (ISender sender, CancellationToken cancellationToken) =>
             {
                 var query = new GetAllClocksQuery();
 

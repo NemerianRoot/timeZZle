@@ -13,7 +13,7 @@ public class GenerateRandomClocksEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPost($"{Tags.Clocks}/seed",
+        app.MapPost($"api/{Tags.Clocks}/seed",
             async (ClockRandomGenerateDto dto, ISender sender, CancellationToken cancellationToken) =>
             {
                 var command = new GenerateRandomClocksCommand(dto.ClockSize, dto.BatchSize);

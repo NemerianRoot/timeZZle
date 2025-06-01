@@ -1,0 +1,9 @@
+[*.cs]
+# Exiger "this." pour les propriétés
+# dotnet_style_qualification_for_property = true:warning
+
+# Exiger "this." pour les méthodes
+# dotnet_style_qualification_for_method = true:warning
+
+# Exiger "this." pour les événements
+# dotnet_style_qualification_for_event = true:warning

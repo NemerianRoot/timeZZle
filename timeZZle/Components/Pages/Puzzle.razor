@@ -1,104 +1,26 @@
-﻿@page "/puzzle"
+﻿@page "/Puzzle"
 @rendermode InteractiveServer
-@code {
-    [Parameter] public List<int> PuzzleValues { get; set; } = [0, 1, 2, 3, 4, 5, 6, 7];
 
-    private int? SelectedIndex { get; set; } = null;
-    private HashSet<int> ConsumedIndices = [];
-    private int ClockwiseIndex = 0;
-    private int CounterClockwiseIndex = 0;
-
-    private int Count => PuzzleValues.Count;
-
-    private void Select(int index)
-    {
-        Console.WriteLine($"Clicked index: {index}");
-        
-        if (ConsumedIndices.Contains(index))
-        {
-            return;
-        }
-        
-        if (SelectedIndex != null && index != ClockwiseIndex && index != CounterClockwiseIndex)
-        {
-            return;
-        }
-
-        SelectedIndex = index;
-        ConsumedIndices.Add(index);
-
-        var step = PuzzleValues[index];
-
-        ClockwiseIndex = (index + step) % Count;
-        CounterClockwiseIndex = (index - step + Count) % Count;
-    }
-
-    private string GetClass(int index)
-    {
-        if (ConsumedIndices.Contains(index))
-        {
-            return "consumed";
-        }
-        
-        if (SelectedIndex == null || index == ClockwiseIndex || index == CounterClockwiseIndex)
-        {
-            return "selectable";
-        }
-        
-        return "disabled";
-    }
+@if (this.CurrentClock is null)
+{
+    <p>Loading ...</p> 
 }
-<div class="circle">
-    @for (var i = 0; i < Count; i++)
-    {
-        var radius = 10.0d - (Count > 8 ? 1 : 0); 
-        var angle = 360.0 * i / Count;
-        var style = $"transform: rotate({angle}deg) translate(0, -{radius}rem) rotate({-angle}deg);";
-        var captured = i;
-        <div class="cell @GetClass(i)" style="@style" @onclick="() => Select(captured)">
-            @PuzzleValues[i]
-        </div>
-    }
-</div>
-
-<style>
-    .circle {
-        position: relative;
-        width: 26rem;
-        height: 26rem;
-        margin: 2rem auto;
-        border-radius: 50%;
-        background: rgba(0, 0, 0, 0.05); /* debug */
-    }
-    .cell {
-        border: 1px;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 3rem;
-        height: 3rem;
-        margin: -1.5rem;
-        text-align: center;
-        line-height: 3rem;
-        border-radius: 50%;
-        background-color: lightgray;
-        cursor: pointer;
-        transition: background 0.3s;
-        z-index: 10;
-        user-select: none;
-        pointer-events: auto;
-    }
-    .cell.selectable {
-        background-color: lightgreen;
-    }
-    .cell.disabled {
-        background-color: lightgray;
-        opacity: 0.5;
-        pointer-events: none;
-    }
-    .cell.consumed {
-        background-color: darkgray;
-        pointer-events: none;
-        text-decoration: line-through;
-    }
-</style>
+else
+{
+    <button class="btn btn-outline-secondary" @onclick="this.Reset">
+        <i class="bi bi-arrow-clockwise"></i> Reset
+    </button>
+    
+    <div class="circle">
+        @for (var i = 0; i < this.CurrentClock!.Size; i++)
+        {
+            var radius = 10.0d - (this.CurrentClock.Size > 8 ? 1 : 0); 
+            var angle = 360.0 * i / this.CurrentClock.Size;
+            var style = $"transform: rotate({angle}deg) translate(0, -{radius}rem) rotate({-angle}deg);";
+            var box = this.CurrentClock.Boxes.First(o => o.Position == i);
+            <div class="cell @(this.GetClass(box))" style="@style" @onclick="() => this.Select(box)">
+                @box.Value
+            </div>
+        }
+    </div>
+}

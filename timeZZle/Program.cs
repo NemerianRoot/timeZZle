@@ -10,6 +10,9 @@ using timeZZle.Web.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(opt =>
+    opt.AddPolicy("All", pol => pol.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 
@@ -23,14 +26,16 @@ builder.Services
 builder.Services.AddControllers();
 builder.Services.AddEndpoints(typeof(CreateClockEndpoint).Assembly);
 
-// builder.Services.AddHealthChecks();
+// front services : 
+//builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri("https://localhost:5299") });
+builder.Services.AddHttpClient();
 
-// Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 var app = builder.Build();
 
+app.UseCors("All");
 app.UseRouting();
 app.UseSwagger();
 app.UseSwaggerUI();
@@ -43,8 +48,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-
-    // app.ApplyMigrations();
+    app.Seed();
 }
 
 // app.MapHealthChecks("health", new HealthCheckOptions

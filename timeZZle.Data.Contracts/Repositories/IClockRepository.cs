@@ -7,4 +7,5 @@ public interface IClockRepository : IGenericRepository<Clock>
 {
     Task<Clock?> FindAsync(Guid id);
     Task<Clock> GetRandom(Difficulty? difficulty = null);
+    Task<int> Count();
 }

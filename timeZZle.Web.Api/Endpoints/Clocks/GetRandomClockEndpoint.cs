@@ -14,7 +14,7 @@ public class GetRandomClockEndpoint : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet($"{Tags.Clocks}/random", async (ISender sender, CancellationToken cancellationToken) =>
+        app.MapGet($"api/{Tags.Clocks}/random", async (ISender sender, CancellationToken cancellationToken) =>
         {
             var query = new GetRandomClockQuery();
 
