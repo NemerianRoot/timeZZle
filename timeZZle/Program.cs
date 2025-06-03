@@ -1,7 +1,8 @@
 using MediatR;
 using timeZZle.Application;
 using timeZZle.Behaviors;
-using timeZZle.Components;
+using timeZZle.ClientApp;
+using timeZZle.ClientApp.Services;
 using timeZZle.Data;
 using timeZZle.Extensions;
 using timeZZle.Middlewares;
@@ -28,7 +29,13 @@ builder.Services.AddEndpoints(typeof(CreateClockEndpoint).Assembly);
 
 // front services : 
 //builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri("https://localhost:5299") });
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient(AppHttpClient.HttpClientName, client =>
+{
+    client.BaseAddress = new Uri("https://localhost:7215/api/");
+});
+builder.Services.AddScoped<AppHttpClient>();
+builder.Services.AddScoped(sp =>
+    sp.GetRequiredService<IHttpClientFactory>().CreateClient(AppHttpClient.HttpClientName));
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

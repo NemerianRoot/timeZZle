@@ -1,3 +1,7 @@
-﻿namespace timeZZle.Dtos.Puzzles;
+﻿using System.ComponentModel;
 
-public record ClockRandomGenerateDto(int ClockSize, int BatchSize = 10);
+namespace timeZZle.Dtos.Puzzles;
+
+public record ClockRandomGenerateDto(
+    [DefaultValue(08)] int ClockSize = 8, 
+    [DefaultValue(10)] int BatchSize = 10);

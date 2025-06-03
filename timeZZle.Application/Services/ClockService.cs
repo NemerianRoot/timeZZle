@@ -1,11 +1,14 @@
-﻿using timeZZle.Application.Interfaces.Helpers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using timeZZle.Application.Interfaces.Helpers;
 using timeZZle.Application.Interfaces.Services;
 using timeZZle.Data.Contracts.Repositories;
 using timeZZle.Domain.Entities;
 using timeZZle.Shared.Comparers;
+using timeZZle.Shared.Utils;
 
 namespace timeZZle.Application.Services;
 
+[Registry(typeof(IClockService), ServiceLifetime.Scoped)]
 internal class ClockService(
     IClockRepository repository,
     IClockHelper clockHelper) : IClockService

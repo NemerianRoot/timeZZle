@@ -1,8 +1,11 @@
-﻿using timeZZle.Application.Interfaces.Helpers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using timeZZle.Application.Interfaces.Helpers;
 using timeZZle.Domain.Entities;
+using timeZZle.Shared.Utils;
 
 namespace timeZZle.Application.Helpers;
 
+[Registry(typeof(IClockHelper), ServiceLifetime.Scoped)]
 internal class ClockHelper : IClockHelper
 {
     public Clock GenerateRandomSolvable(int size, int maxValue)

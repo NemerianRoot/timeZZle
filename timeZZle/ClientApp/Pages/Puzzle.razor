@@ -1,0 +1,43 @@
+﻿@page "/Puzzle"
+@using timeZZle.Dtos.Clocks
+
+@if (_currentClock is null)
+{
+    <p>Loading ...</p> 
+}
+else
+{
+    <button class="btn btn-outline-secondary" @onclick="this.Reset">
+        <i class="bi bi-arrow-clockwise"></i> Reset
+    </button>
+    
+    <div class="circle">
+        @for (var i = 0; i < _currentClock!.Size; i++)
+        {
+            var radius = 10.0d - (_currentClock.Size > 8 ? 1 : 0); 
+            var angle = 360.0 * i / _currentClock.Size;
+            var style = $"transform: rotate({angle}deg) translate(0, -{radius}rem) rotate({-angle}deg);";
+            var box = _currentClock.Boxes.First(o => o.Position == i);
+            <div class="cell @(this.GetClass(box))" style="@style" @onclick="() => this.Select(box)">
+                @box.Value
+            </div>
+        }
+    </div>
+}
+
+@code{
+    private string GetClass(BoxDto box)
+    {
+        if (this._consumedBoxes.Any(o => o.BoxId == box.Id))
+        {
+            return "consumed";
+        }
+
+        if (_selectedPosition is null || _nextPossibilities.Contains(box))
+        {
+            return "selectable";
+        }
+
+        return "disabled";
+    }
+}

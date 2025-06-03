@@ -15,8 +15,12 @@
 </head>
 
 <body>
-<Routes/>
+<Routes @rendermode="AppDefault"/>
 <script src="_framework/blazor.web.js"></script>
 </body>
 
 </html>
+
+@code{
+    private static IComponentRenderMode AppDefault => new InteractiveServerRenderMode(prerender: false);
+}
